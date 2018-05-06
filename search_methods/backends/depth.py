@@ -9,6 +9,7 @@ class Search(SearchAbstract):
 
     def __init__(self, image_array):
         super(Search, self).__init__(image_array)
+        print(self.search())
 
     def get_problem_image_solution(self):
         pass
@@ -18,17 +19,15 @@ class Search(SearchAbstract):
 
     def search(self):
         start, goal = (0, 152), (321, 168)
-        queue = deque([('', start)])
+        stack = deque([('', start)])
         visited = set()
 
-        while queue:
-            path, current = queue.popleft()
+        while stack:
+            path, current = stack.pop()
             if current == goal:
                 return path
             if current in visited:
                 continue
-
             visited.add(current)
-
             for direction, neighbour in self.graph[current]:
-                queue.append((path + direction, neighbour))
+                stack.append((path + direction, neighbour))
