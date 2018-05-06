@@ -13,27 +13,9 @@ class Search(SearchAbstract):
         A Busca em Largura utiliza filas.
         """
         super(Search, self).__init__(image_array)
-        self.graph_solution = {}
-        self.graph_analysis()
 
     def get_problem_image_solution(self):
         pass
 
     def get_search_response_payload(self):
         pass
-
-    def graph_analysis(self):
-        past_row_positions = None
-
-        for row in self.graph:
-            if not past_row_positions:
-                self.graph_solution[row] = self.graph[row]
-                past_row_positions = self.graph[row]
-                continue
-
-            self.graph_solution[row] = []
-            for i in self.graph[row]:
-                if i in past_row_positions:
-                    self.graph_solution[row].append(i)
-
-            past_row_positions = self.graph_solution[row]

@@ -1,3 +1,5 @@
+from collections import deque
+
 from search_methods.base import SearchAbstract
 
 
@@ -13,3 +15,20 @@ class Search(SearchAbstract):
 
     def get_search_response_payload(self):
         pass
+
+    def search(self):
+        start, goal = (0, 152), (321, 168)
+        queue = deque([('', start)])
+        visited = set()
+
+        while queue:
+            path, current = queue.popleft()
+            if current == goal:
+                return path
+            if current in visited:
+                continue
+
+            visited.add(current)
+
+            for direction, neighbour in self.graph[current]:
+                queue.append((path + direction, neighbour))
