@@ -10,6 +10,10 @@ class Search(SearchAbstract):
     básica é percorrer todos os nós filhos ao nó raiz o mais profundo possível
     para somente depois retroceder.
     (https://blog.pantuza.com/artigos/busca-em-profundidade)
+
+    --> Não é ideal e não é garantido que encontre a melhor solução
+    --> Utilizando pilha para armazenar os nós que serão explorados
+    --> Iniciando pelos últimos nós adicionados na pilha
     """
 
     NAME = "Busca em Profundidade"
@@ -30,6 +34,8 @@ class Search(SearchAbstract):
                 return path
             if current in visited:
                 continue
+
             visited.add(current)
+
             for direction, neighbour in self.graph[current]:
                 stack.append((path + direction, neighbour))

@@ -10,6 +10,10 @@ class Search(SearchAbstract):
     que a busca sempre ocorre nos filhos ou nós mais próximos ao nó pelo qual a
     busca foi iniciada.
     (https://blog.pantuza.com/artigos/busca-em-largura)
+
+    --> Utiliza fila
+    --> Explora os nós vizinhos antes de passar para o próximo nível
+    --> É ideal e é garantido para encontrar a melhor solução que existe
     """
 
     NAME = "Busca em Largura"
@@ -18,13 +22,24 @@ class Search(SearchAbstract):
         super(Search, self).__init__(image_array)
 
     def graph_solution(self):
+        """
+        --> Utilizamos o "deque" como uma fila
+        --> Colocamos o nó inicial na fila. Repita este procedimento até
+            visitar o nó de meta ou visitar todos os nós disponíveis: pegue o
+            primeiro da fila, verifique se foi visitado ou não, verifique se é
+            o objetivo, coloque todos os vizinhos no final da fila, repita.
+            Para cada etapa, rastreamos não apenas os nós, mas também as
+            direções e o caminho para o nó atual.
+        """
         start = list(self.graph.keys())[0]
         goal = list(self.graph.keys())[-1]
         queue = deque([('', start)])
         visited = set()
 
         while queue:
+
             self.analyzed_states += 1
+
             path, current = queue.popleft()
             if current == goal:
                 return path

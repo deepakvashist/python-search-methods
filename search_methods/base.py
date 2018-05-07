@@ -38,6 +38,7 @@ class SearchAbstract:
 
         for maze_row in range(maze_width):
             for maze_col in range(maze_height):
+                # Verifica se possui pixel preto
                 if 0 in self.image_array[maze_row][maze_col]:
                     graph.update({(maze_row, maze_col): []})
 
