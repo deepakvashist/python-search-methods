@@ -5,12 +5,11 @@ from search_methods.base import SearchAbstract
 
 class Search(SearchAbstract):
     """
-    Um algoritmo de busca é um algoritmo que percorre um grafo andando
-    pelos arcos de um vértice a outro. Um algoritmo de busca examina
-    sistematicamente os vértices e os arcos do grafo depois de examinar a
-    ponta inicial de um arco, o algoritmo percorre o arco e examina sua
-    ponta final. Cada arco é examinado no máximo uma vez.
-    (https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/bfs.html)
+    A busca em largura é um algoritmo utilizado para percorrer ou buscar itens
+    dentro das estruturas de dados grafos ou árvores. Como característica temos
+    que a busca sempre ocorre nos filhos ou nós mais próximos ao nó pelo qual a
+    busca foi iniciada.
+    (https://blog.pantuza.com/artigos/busca-em-largura)
     """
 
     NAME = "Busca em Largura"
@@ -25,6 +24,7 @@ class Search(SearchAbstract):
         visited = set()
 
         while queue:
+            self.analyzed_states += 1
             path, current = queue.popleft()
             if current == goal:
                 return path
