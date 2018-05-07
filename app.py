@@ -29,10 +29,15 @@ class App:
         image_core = ImageCore(self.IMAGE_SOURCE_PATH)
         search = get_search_class(self.search_method_choice,
                                   image_core.image_array)
+
+        search.set_graph()
+        search.solution = search.graph_solution()
+        search.build_maze_solution()
+
         search.get_problem_image_solution()
         search.get_search_response_payload()
 
 
 if __name__ == '__main__':
-    app = App(search_method=STAR_CHOICE)
+    app = App(search_method=WIDTH_CHOICE)
     app.run()

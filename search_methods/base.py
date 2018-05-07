@@ -1,12 +1,25 @@
+import os
+import copy
+from PIL import Image
+
+
 class SearchAbstract:
+
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    SOLUTION_COLOR = [134, 1, 255, 1]
 
     def __init__(self, image_array):
         self.image_array = image_array
+        self.image_solution_array = copy.deepcopy(self.image_array)
         self.graph = {}
-        self.set_graph()
+        self.solution = None
+
+    def graph_solution(self):
+        return NotImplementedError
 
     def get_problem_image_solution(self):
-        return NotImplementedError
+        image = Image.fromarray(self.image_solution_array)
+        image.save(os.path.join(self.BASE_DIR, 'response', 'image.png'))
 
     def get_search_response_payload(self):
         return NotImplementedError
@@ -31,3 +44,19 @@ class SearchAbstract:
                 graph[(row, col + 1)].append(('L', (row, col)))
 
         self.graph = graph
+
+    def build_maze_solution(self):
+        position = list(self.graph.keys())[0]
+
+        for step in self.solution:
+            if step == 'L':
+                position = (position[0], position[1] - 1)
+            elif step == 'T':
+                position = (position[0] - 1, position[1])
+            elif step == 'B':
+                position = (position[0] + 1, position[1])
+            else:
+                position = (position[0], position[1] + 1)
+
+            self.image_solution_array[position[0]][position[1]] = \
+                self.SOLUTION_COLOR

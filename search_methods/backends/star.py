@@ -9,18 +9,11 @@ class Search(SearchAbstract):
 
     def __init__(self, image_array):
         super(Search, self).__init__(image_array)
-        print(self.search())
-
-    def get_problem_image_solution(self):
-        pass
-
-    def get_search_response_payload(self):
-        pass
 
     def heuristic(self, cell, goal):
         return abs(cell[0] - goal[0]) + abs(cell[1] - goal[1])
 
-    def search(self):
+    def graph_solution(self):
         start, goal = (0, 152), (321, 168)
         pr_queue = []
         heappush(pr_queue, (0 + self.heuristic(start, goal), 0, '', start))
