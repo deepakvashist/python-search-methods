@@ -4,6 +4,12 @@ from search_methods.base import SearchAbstract
 
 
 class Search(SearchAbstract):
+    """
+    O algoritmo de busca em profundidade visita todos os vértices e todos
+    os arcos de um grafo dado e atribui um número a cada vértice: o k-ésimo
+    vértice descoberto recebe o número k.
+    (https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/dfs.html)
+    """
 
     NAME = "Busca em Profundidade"
 

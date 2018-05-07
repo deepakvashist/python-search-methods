@@ -4,16 +4,18 @@ from search_methods.base import SearchAbstract
 
 
 class Search(SearchAbstract):
+    """
+    Um algoritmo de busca é um algoritmo que percorre um grafo andando
+    pelos arcos de um vértice a outro. Um algoritmo de busca examina
+    sistematicamente os vértices e os arcos do grafo depois de examinar a
+    ponta inicial de um arco, o algoritmo percorre o arco e examina sua
+    ponta final. Cada arco é examinado no máximo uma vez.
+    (https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/bfs.html)
+    """
 
     NAME = "Busca em Largura"
 
     def __init__(self, image_array):
-        """
-        Partindo de um vértice inicial, ela explora todos os vértices vizinhos.
-        Em seguida, para cada vértice vizinho, ela repete esse processo,
-        visitando os vértices ainda inexplorados.
-        A Busca em Largura utiliza filas.
-        """
         super(Search, self).__init__(image_array)
         print(self.search())
 
