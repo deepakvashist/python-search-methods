@@ -7,3 +7,6 @@ class Search(SearchAbstract):
 
     def __init__(self, image_array):
         super(Search, self).__init__(image_array)
+
+    def graph_solution(self):
+        pass
